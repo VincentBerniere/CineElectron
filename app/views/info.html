@@ -1,0 +1,46 @@
+<div class="movie_detail" loading="loading">
+  <div class="row">
+    <div class="col-md-4">
+      <img ng-src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" width="200" height="300"/>
+    </div>
+    <div class="col-md-8">
+      <dl class="dl-horizontal">
+        <dt>Genre</dt>
+        <dd>
+          <ul>
+            <li ng-repeat="genre in movie.genres">{{genre.name}}</li>
+          </ul>
+        </dd>
+        <dt>Synopsis</dt>
+        <dd>{{movie.overview}}</dd>
+        <dt>Origine</dt>
+        <dd>
+          <ul>
+            <li ng-repeat="production in movie.production_countries">{{production.name}}</li>
+          </ul>
+        </dd>
+        <dt>Date</dt>
+        <dd>{{movie.release_date | date: 'yyyy'}}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Les films similaires :</h2>
+    </div>
+
+    <ul class="movies">
+      <li ng-repeat="similar in similars | limitTo: 6">
+        <div class="col-xs-4 col-md-2">
+          <img class="img-responsive" ng-src="http://image.tmdb.org/t/p/w500{{similar.poster_path}}" />
+          <a ng-href="#/info/{{similar.id}}"><h4 ng-bind="similar.title"></h4></a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="col-xs-12">
+      <a href="#/similar/{{movie.id}}">En voir plus</a>
+    </div>
+  </div>
+</div>
